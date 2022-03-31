@@ -27,13 +27,13 @@ class PillButtons {
       child: TextButton(
         child: Text(
           text,
-          style: TextStyle(
-              color: kMonoCeramic,
+          style: const TextStyle(
+              color: AppColor.monoCeramic,
               fontFamily: 'Google Sans',
-              fontSize: tHeading3),
+              fontSize: AppText.heading3),
         ),
         onPressed: () => function,
-        style: TextButton.styleFrom(primary: kMonoCeramic),
+        style: TextButton.styleFrom(primary: AppColor.monoCeramic),
       ),
     );
   }

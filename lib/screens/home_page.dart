@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
                   height: height / 2 + 20,
                   decoration: BoxDecoration(
                       gradient: LinearGradient(
-                          colors: gsNatural,
+                          colors: AppGradient.natural,
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight))),
             ),
@@ -57,19 +57,21 @@ class HomePage extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(sDefaultPadding),
+                padding: const EdgeInsets.all(AppBox.defaultPadding),
                 child: Row(
                   children: [
                     Expanded(
                       child: RichText(
                           text: TextSpan(
-                              style: TextStyle(
-                                  color: kMonoBlack, fontSize: tHeading3),
+                              style: const TextStyle(
+                                  color: AppColor.monoBlack,
+                                  fontSize: AppText.heading3),
                               children: [
                             const TextSpan(text: "Welcome "),
                             TextSpan(
                                 text: "$user 👋",
-                                style: const TextStyle(fontWeight: wSemibold))
+                                style: const TextStyle(
+                                    fontWeight: AppText.semibold))
                           ])),
                     ),
                     IconButton(onPressed: () {}, icon: const Icon(Icons.search))
@@ -82,14 +84,14 @@ class HomePage extends StatelessWidget {
         Positioned(
           bottom: 0,
           child: Container(
-            height: hExtra + 10,
+            height: AppBox.extraSize + 10,
             width: width,
             decoration: BoxDecoration(
-                color: kMonoCeramic,
-                boxShadow: bsDefaultShadow,
+                color: AppColor.monoCeramic,
+                boxShadow: AppBox.defaultShadow,
                 borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(rDefaultRadius * 2),
-                    topRight: Radius.circular(rDefaultRadius * 2))),
+                    topLeft: Radius.circular(AppBox.curvedRadius),
+                    topRight: Radius.circular(AppBox.curvedRadius))),
           ),
         )
       ]),
@@ -121,20 +123,20 @@ class CategoriesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: sDefaultPadding),
+      padding: const EdgeInsets.symmetric(horizontal: AppBox.defaultPadding),
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: sDefaultPadding),
+        padding: const EdgeInsets.symmetric(vertical: AppBox.defaultPadding),
         height: 230,
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: [
             Categories().verticleCard(text: "Take Advice"),
             const SizedBox(
-              width: sDefaultPadding,
+              width: AppBox.defaultPadding,
             ),
             Categories().verticleCard(text: "Take Advice"),
             const SizedBox(
-              width: sDefaultPadding,
+              width: AppBox.defaultPadding,
             ),
             Categories().verticleCard(text: "Take Advice")
           ],
@@ -150,27 +152,28 @@ class SurveyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(sDefaultPadding),
+      padding: const EdgeInsets.all(AppBox.defaultPadding),
       child: TextButton(
         style: TextButton.styleFrom(
-            alignment: Alignment.topLeft, primary: kMonoShade),
+            alignment: Alignment.topLeft, primary: AppColor.monoShade),
         onPressed: () {},
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'What is your problems today?',
               style: TextStyle(
-                  color: kMonoBlack,
+                  color: AppColor.monoBlack,
                   fontFamily: 'Google Sans',
-                  fontSize: tHeading2,
-                  fontWeight: FontWeight.w700),
+                  fontSize: AppText.heading2,
+                  fontWeight: AppText.semibold),
             ),
-            spacer(space: 5),
-            Text(
+            AppBox.verticalSpacer(space: 5),
+            const Text(
               'Take a quiz',
-              style:
-                  TextStyle(color: kNaturalSecondary, fontSize: tHeading4 + 4),
+              style: TextStyle(
+                  color: AppColor.naturalSecondary,
+                  fontSize: AppText.heading4 + 4),
             ),
           ],
         ),
@@ -193,18 +196,18 @@ class Upcomming extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(sDefaultPadding),
+      padding: const EdgeInsets.all(AppBox.defaultPadding),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
-            padding: EdgeInsets.symmetric(vertical: sDefaultPadding),
+            padding: EdgeInsets.symmetric(vertical: AppBox.defaultPadding),
             child: Text(
               "Upcoming",
               style: TextStyle(
                   fontFamily: 'Google Sans',
-                  fontSize: tHeading2,
-                  fontWeight: wSemibold),
+                  fontSize: AppText.heading2,
+                  fontWeight: AppText.semibold),
             ),
           ),
           ScheduleCard()
@@ -224,16 +227,16 @@ class Spotlight extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: const [
         SizedBox(
-          height: sDefaultPadding,
+          height: AppBox.defaultPadding,
         ),
         Padding(
-          padding: EdgeInsets.all(sDefaultPadding),
+          padding: EdgeInsets.all(AppBox.defaultPadding),
           child: Text(
             "Patient Thoguht",
             style: TextStyle(
                 fontFamily: 'Google Sans',
-                fontSize: tHeading2,
-                fontWeight: wSemibold),
+                fontSize: AppText.heading2,
+                fontWeight: AppText.semibold),
           ),
         ),
         PostItem(

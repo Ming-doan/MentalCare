@@ -20,7 +20,7 @@ class LoginPage extends StatelessWidget {
                 gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [kNaturalPrimary, kNaturalSecondary])),
+                    colors: AppGradient.natural)),
           )),
           Positioned(
             top: height / 2 - 240,
@@ -28,8 +28,8 @@ class LoginPage extends StatelessWidget {
             child: Container(
               width: width * 2,
               height: width * 2,
-              decoration:
-                  BoxDecoration(shape: BoxShape.circle, color: kMonoWhite),
+              decoration: const BoxDecoration(
+                  shape: BoxShape.circle, color: AppColor.monoWhite),
             ),
           ),
           Positioned(
@@ -37,31 +37,31 @@ class LoginPage extends StatelessWidget {
             child: Container(
               width: width,
               height: height / 2 + 200,
-              padding: const EdgeInsets.all(sDefaultPadding * 2),
+              padding: const EdgeInsets.all(AppBox.defaultPadding * 2),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: sDefaultPadding * 2),
+                  const Padding(
+                    padding:
+                        EdgeInsets.symmetric(vertical: AppBox.largePadding),
                     child: Text(
                       "Welcome to \nMe.care",
                       style: TextStyle(
-                          color: kNaturalSecondary,
+                          color: AppColor.naturalSecondary,
                           fontSize: 28,
                           fontFamily: 'Google Sans',
                           fontWeight: FontWeight.w900),
                     ),
                   ),
-                  Padding(
+                  const Padding(
                     padding:
-                        const EdgeInsets.symmetric(vertical: sDefaultPadding),
+                        EdgeInsets.symmetric(vertical: AppBox.defaultPadding),
                     child: Text(
                       "Sign in to Me.care",
                       style: TextStyle(
-                          color: kMonoBlack,
+                          color: AppColor.monoBlack,
                           fontFamily: 'Google Sans',
-                          fontSize: tHeading3),
+                          fontSize: AppText.heading3),
                     ),
                   ),
                   InputBox()
@@ -74,7 +74,7 @@ class LoginPage extends StatelessWidget {
                           child: PillButtons().largeButton(
                               text: "Sign in",
                               function: () {},
-                              colors: gsNatural)),
+                              colors: AppGradient.natural)),
                     ],
                   ),
                 ],

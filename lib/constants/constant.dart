@@ -53,13 +53,11 @@ class AppText {
   static const double heading3 = 18.0;
   static const double heading2 = 22.0;
   static const double heading1 = 28.0;
-}
 
-class AppWeight {
-  static const FontWeight wLight = FontWeight.w200;
-  static const FontWeight wRegular = FontWeight.w400;
-  static const FontWeight wSemibold = FontWeight.w600;
-  static const FontWeight wBold = FontWeight.w900;
+  static const FontWeight light = FontWeight.w200;
+  static const FontWeight regular = FontWeight.w400;
+  static const FontWeight semibold = FontWeight.w600;
+  static const FontWeight bold = FontWeight.w900;
 }
 
 class AppBox {
@@ -74,14 +72,14 @@ class AppBox {
   static const double mediumSize = 34.0;
   static const double smallSize = 24.0;
 
-  static const double curvedRadius = 10.0;
+  static const double curvedRadius = 20.0;
   static const double defaultRadius = 10.0;
 
   static List<BoxShadow> defaultShadow = [
     const BoxShadow(color: AppColor.monoShade, blurRadius: 10)
   ];
 
-  static Widget vericalSpacer({double space = defaultPadding}) {
+  static Widget verticalSpacer({double space = defaultPadding}) {
     return SizedBox(
       height: space,
     );

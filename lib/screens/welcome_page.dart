@@ -23,7 +23,7 @@ class WelcomePage extends StatelessWidget {
                 gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [kNaturalPrimary, kNaturalSecondary])),
+                    colors: AppGradient.natural)),
           )),
           // Circle
           Positioned(
@@ -32,8 +32,8 @@ class WelcomePage extends StatelessWidget {
             child: Container(
               width: width * 2,
               height: width * 2,
-              decoration:
-                  BoxDecoration(shape: BoxShape.circle, color: kMonoWhite),
+              decoration: const BoxDecoration(
+                  shape: BoxShape.circle, color: AppColor.monoWhite),
             ),
           ),
           // Content
@@ -45,13 +45,13 @@ class WelcomePage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(sDefaultPadding * 3),
+                  const Padding(
+                    padding: EdgeInsets.all(AppBox.extraPadding),
                     child: Text(
                       "Me.care",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: kNaturalSecondary,
+                          color: AppColor.naturalSecondary,
                           fontSize: 40,
                           fontFamily: 'Google Sans',
                           fontWeight: FontWeight.w900),
@@ -60,25 +60,27 @@ class WelcomePage extends StatelessWidget {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: sDefaultPadding * 3),
+                          horizontal: AppBox.extraPadding),
                       child: Text(
                         text,
-                        style: TextStyle(
-                            color: kMonoBlack,
-                            fontSize: tHeading3 + 4,
+                        style: const TextStyle(
+                            color: AppColor.monoBlack,
+                            fontSize: AppText.heading2,
                             fontFamily: 'Google Sans'),
                       ),
                     ),
                   ),
                   Container(
                     width: width,
-                    padding: const EdgeInsets.all(sDefaultPadding),
+                    padding: const EdgeInsets.all(AppBox.defaultPadding),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         PillButtons().largeButton(
-                            text: "Next", function: () {}, colors: gsNatural),
-                        spacer()
+                            text: "Next",
+                            function: () {},
+                            colors: AppGradient.natural),
+                        AppBox.verticalSpacer()
                       ],
                     ),
                   )
@@ -95,15 +97,15 @@ class WelcomePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Container(
-                      padding: const EdgeInsets.all(sMiniPadding),
+                      padding: const EdgeInsets.all(AppBox.miniPadding),
                       child: TextButton(
                         style: TextButton.styleFrom(
-                            primary: kMonoCeramic,
+                            primary: AppColor.monoCeramic,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(56))),
                         child: const Text(
                           "Skip",
-                          style: TextStyle(fontSize: tHeading3),
+                          style: TextStyle(fontSize: AppText.heading3),
                         ),
                         onPressed: () {},
                       ),

@@ -10,27 +10,30 @@ class ScheduleCard {
 
     return TextButton(
       onPressed: () {},
-      style:
-          TextButton.styleFrom(padding: EdgeInsets.zero, primary: kMonoBlack),
+      style: TextButton.styleFrom(
+          padding: EdgeInsets.zero, primary: AppColor.monoBlack),
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(rDefaultRadius),
-            color: kMonoCeramic,
-            boxShadow: bsDefaultShadow),
+            borderRadius: BorderRadius.circular(AppBox.defaultRadius),
+            color: AppColor.monoCeramic,
+            boxShadow: AppBox.defaultShadow),
         height: defaultHeight,
-        padding: const EdgeInsets.all(sSmallPadding),
+        padding: const EdgeInsets.all(AppBox.smallPadding),
         child: Row(
           children: [
             Container(
-              margin: const EdgeInsets.all(sMiniPadding),
-              width: defaultHeight - sSmallPadding * 2 - sMiniPadding * 2,
+              margin: const EdgeInsets.all(AppBox.miniPadding),
+              width: defaultHeight -
+                  AppBox.smallPadding * 2 -
+                  AppBox.miniPadding * 2,
               decoration: BoxDecoration(
-                  color: kMonoShadow,
+                  color: AppColor.monoShadow,
                   borderRadius: BorderRadius.circular(defaultHeight)),
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: sSmallPadding),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: AppBox.smallPadding),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -38,25 +41,25 @@ class ScheduleCard {
                       children: [
                         Text(
                           date[0],
-                          style: TextStyle(
-                              color: kNaturalSecondary,
+                          style: const TextStyle(
+                              color: AppColor.naturalSecondary,
                               fontFamily: 'Google Sans',
-                              fontSize: tHeading5),
+                              fontSize: AppText.heading5),
                         ),
                         Container(
                           width: 5,
                           height: 5,
                           margin: const EdgeInsets.symmetric(horizontal: 5),
                           decoration: BoxDecoration(
-                              color: kNaturalSecondary,
+                              color: AppColor.naturalSecondary,
                               borderRadius: BorderRadius.circular(5)),
                         ),
                         Text(
                           date[1],
-                          style: TextStyle(
-                              color: kNaturalSecondary,
+                          style: const TextStyle(
+                              color: AppColor.naturalSecondary,
                               fontFamily: 'Google Sans',
-                              fontSize: tHeading5),
+                              fontSize: AppText.heading5),
                         ),
                       ],
                     ),
@@ -66,13 +69,14 @@ class ScheduleCard {
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
                               fontFamily: 'Google Sans',
-                              fontSize: tHeading4,
-                              fontWeight: wSemibold)),
+                              fontSize: AppText.heading4,
+                              fontWeight: AppText.semibold)),
                     ),
                     Text(
                       doctor,
                       style: const TextStyle(
-                          fontFamily: 'Google Sans', fontSize: tHeading4),
+                          fontFamily: 'Google Sans',
+                          fontSize: AppText.heading4),
                     )
                   ],
                 ),

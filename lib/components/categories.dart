@@ -7,15 +7,16 @@ class Categories {
 
     return TextButton(
       style: TextButton.styleFrom(
-          primary: kMonoShade, padding: const EdgeInsets.all(sMiniPadding)),
+          primary: AppColor.monoShade,
+          padding: const EdgeInsets.all(AppBox.miniPadding)),
       onPressed: () {},
       child: Container(
         decoration: BoxDecoration(
-            color: kMonoCeramic,
-            borderRadius: BorderRadius.circular(rDefaultRadius * 2),
-            boxShadow: bsDefaultShadow),
-        width: defaultWidth + (sDefaultPadding * 4),
-        padding: const EdgeInsets.symmetric(vertical: sDefaultPadding * 2),
+            color: AppColor.monoCeramic,
+            borderRadius: BorderRadius.circular(AppBox.largePadding),
+            boxShadow: AppBox.defaultShadow),
+        width: defaultWidth + (AppBox.defaultPadding * 4),
+        padding: const EdgeInsets.symmetric(vertical: AppBox.largePadding),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -24,18 +25,18 @@ class Categories {
               height: defaultWidth,
               decoration: BoxDecoration(
                   gradient: LinearGradient(
-                      colors: gsCryptic,
+                      colors: AppGradient.cryptic,
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight),
-                  borderRadius: BorderRadius.circular(rDefaultRadius * 2)),
+                  borderRadius: BorderRadius.circular(AppBox.curvedRadius)),
             ),
             Text(
               text,
-              style: TextStyle(
-                  color: kMonoBlack,
-                  fontSize: tHeading3,
+              style: const TextStyle(
+                  color: AppColor.monoBlack,
+                  fontSize: AppText.heading3,
                   fontFamily: 'Google Sans',
-                  fontWeight: wSemibold),
+                  fontWeight: AppText.semibold),
             )
           ],
         ),

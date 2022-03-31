@@ -28,23 +28,24 @@ class PostItem extends StatelessWidget {
             child: Row(
               children: [
                 Container(
-                  width: hLarge,
-                  height: hLarge,
+                  width: AppBox.largeSize,
+                  height: AppBox.largeSize,
                   decoration: BoxDecoration(
-                      color: kMonoShadow,
-                      borderRadius: BorderRadius.circular(hLarge)),
+                      color: AppColor.monoShadow,
+                      borderRadius: BorderRadius.circular(AppBox.largeSize)),
                 ),
                 Expanded(
                   child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: sDefaultPadding),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: AppBox.defaultPadding),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           name,
                           style: const TextStyle(
-                              fontFamily: 'Google Sans', fontSize: tHeading3),
+                              fontFamily: 'Google Sans',
+                              fontSize: AppText.heading3),
                         ),
                         Text(date)
                       ],
@@ -56,36 +57,37 @@ class PostItem extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(sDefaultPadding),
+            padding: const EdgeInsets.all(AppBox.defaultPadding),
             child: Text(
               text,
               textAlign: TextAlign.start,
-              style: const TextStyle(fontSize: tHeading3),
+              style: const TextStyle(fontSize: AppText.heading3),
             ),
           ),
           Container(
             height: 250,
-            color: kMonoShade,
+            color: AppColor.monoShade,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: sSmallPadding),
+            padding:
+                const EdgeInsets.symmetric(horizontal: AppBox.smallPadding),
             child: Row(
               children: [
                 TextButton.icon(
                     style: TextButton.styleFrom(
-                        primary: kStatusSuccess,
+                        primary: AppColor.statusSuccess,
                         shape: RoundedRectangleBorder(
                             borderRadius:
-                                BorderRadius.circular(rDefaultRadius))),
+                                BorderRadius.circular(AppBox.defaultRadius))),
                     onPressed: () {},
                     icon: const Icon(Icons.thumb_up),
                     label: Text('$like')),
                 TextButton.icon(
                     style: TextButton.styleFrom(
-                        primary: kMonoShadow,
+                        primary: AppColor.monoShadow,
                         shape: RoundedRectangleBorder(
                             borderRadius:
-                                BorderRadius.circular(rDefaultRadius))),
+                                BorderRadius.circular(AppBox.defaultRadius))),
                     onPressed: () {},
                     icon: const Icon(Icons.thumb_down),
                     label: Text('$dislike')),
@@ -94,10 +96,10 @@ class PostItem extends StatelessWidget {
                 ),
                 TextButton.icon(
                     style: TextButton.styleFrom(
-                        primary: kMonoShadow,
+                        primary: AppColor.monoShadow,
                         shape: RoundedRectangleBorder(
                             borderRadius:
-                                BorderRadius.circular(rDefaultRadius))),
+                                BorderRadius.circular(AppBox.defaultRadius))),
                     onPressed: () {},
                     icon: const Icon(Icons.share),
                     label: const Text('Share')),

@@ -29,7 +29,7 @@ class WelcomePage2 extends StatelessWidget {
                 gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [kPacificPrimary, kPacificSecondary])),
+                    colors: AppGradient.pacific)),
           )),
           // Circle
           Positioned(
@@ -38,8 +38,8 @@ class WelcomePage2 extends StatelessWidget {
             child: Container(
               width: width * 2,
               height: width * 2,
-              decoration:
-                  BoxDecoration(shape: BoxShape.circle, color: kMonoWhite),
+              decoration: const BoxDecoration(
+                  shape: BoxShape.circle, color: AppColor.monoWhite),
             ),
           ),
           // Content
@@ -51,13 +51,13 @@ class WelcomePage2 extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(sDefaultPadding * 3),
+                  const Padding(
+                    padding: EdgeInsets.all(AppBox.extraPadding),
                     child: Text(
                       "Choose your problems",
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: kPacificSecondary,
+                          color: AppColor.pacificSecondary,
                           fontSize: 40,
                           fontFamily: 'Google Sans',
                           fontWeight: FontWeight.w900),
@@ -65,7 +65,7 @@ class WelcomePage2 extends StatelessWidget {
                   ),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.all(sDefaultPadding * 2),
+                      padding: const EdgeInsets.all(AppBox.largePadding),
                       child: GridView.builder(
                         padding: EdgeInsets.zero,
                         itemCount: choices.length,
@@ -81,13 +81,15 @@ class WelcomePage2 extends StatelessWidget {
                   ),
                   Container(
                     width: width,
-                    padding: const EdgeInsets.all(sDefaultPadding),
+                    padding: const EdgeInsets.all(AppBox.defaultPadding),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         PillButtons().largeButton(
-                            text: "Next", function: () {}, colors: gsPacific),
-                        spacer()
+                            text: "Next",
+                            function: () {},
+                            colors: AppGradient.pacific),
+                        AppBox.verticalSpacer()
                       ],
                     ),
                   )
@@ -104,15 +106,15 @@ class WelcomePage2 extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Container(
-                      padding: const EdgeInsets.all(sMiniPadding),
+                      padding: const EdgeInsets.all(AppBox.miniPadding),
                       child: TextButton(
                         style: TextButton.styleFrom(
-                            primary: kMonoCeramic,
+                            primary: AppColor.monoCeramic,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(56))),
                         child: const Text(
                           "Skip",
-                          style: TextStyle(fontSize: tHeading3),
+                          style: TextStyle(fontSize: AppText.heading3),
                         ),
                         onPressed: () {},
                       ),
@@ -142,17 +144,18 @@ class Choices extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(45.0),
             gradient: LinearGradient(
-                colors: [kPacificPrimary, kPacificSecondary],
+                colors: AppGradient.pacific,
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight)),
         child: TextButton(
           style: TextButton.styleFrom(
-              primary: kMonoWhite,
+              primary: AppColor.monoWhite,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(45.0))),
           child: Text(
             text,
-            style: TextStyle(fontSize: tHeading3, color: kMonoWhite),
+            style: const TextStyle(
+                fontSize: AppText.heading3, color: AppColor.monoWhite),
           ),
           onPressed: () {},
         ),
