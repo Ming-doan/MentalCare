@@ -1,63 +1,109 @@
-// ignore_for_file: prefer_typing_uninitialized_variables
+// ignore_for_file: prefer_typing_uninitialized_variables, must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:mental_care/components/buttons.dart';
+import 'package:flutter/services.dart';
 import 'package:mental_care/components/categories.dart';
 import 'package:mental_care/components/post.dart';
 import 'package:mental_care/components/schedule_card.dart';
 import 'package:mental_care/constants/constant.dart';
+import 'package:mental_care/models/post_model.dart';
+import 'package:mental_care/models/schedule_model.dart';
+import 'package:mental_care/screens/medical_handbook_page.dart';
+import 'package:mental_care/screens/schedule_detail_page.dart';
+import 'package:mental_care/services/utils.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   String user = 'Thousandmile';
-  List<String> schDate = ["20:00", "January, 1st 2022"];
-  String schTitle = "Getting over stress and prevent cypher bullying";
-  String schDr = "Dr Phan Gia Bao";
+  late double opacity;
+
+  void setOpacity(double position) {
+    setState(() {
+      if (position <= 315.0) {
+        opacity = position / 315.0;
+        if (opacity > 1.0) {
+          opacity = 1.0;
+        }
+      } else {
+        opacity = 1.0;
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    opacity = 0.0;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: AppColor.monoWhite.withOpacity(opacity),
+        statusBarIconBrightness: Brightness.dark));
+
     return Scaffold(
       body: Stack(children: [
         Positioned.fill(
-            child: ListView(
-          scrollDirection: Axis.vertical,
-          padding: EdgeInsets.zero,
-          children: [
-            ClipPath(
-              clipper: CircleClipper(),
-              child: Container(
-                  width: width,
-                  height: height / 2 + 20,
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          colors: AppGradient.natural,
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight))),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const SurveyButton(),
-                const CategoriesList(),
-                Upcomming(schDate: schDate, schTitle: schTitle, schDr: schDr),
-                const Spotlight(),
-                const SizedBox(
-                  height: 120,
-                )
-              ],
-            )
-          ],
+            child: NotificationListener<ScrollNotification>(
+          child: ListView(
+            scrollDirection: Axis.vertical,
+            padding: EdgeInsets.zero,
+            children: [
+              ClipPath(
+                clipper: CircleClipper(),
+                child: Container(
+                    width: width,
+                    height: height / 2 + 20,
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            colors: AppGradient.natural,
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight))),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const SurveyButton(),
+                  const CategoriesList(),
+                  AppBox.verticalSpacer(space: AppBox.miniPadding),
+                  Upcomming(),
+                  AppBox.verticalSpacer(space: AppBox.miniPadding),
+                  Spotlight(),
+                  AppBox.verticalSpacer(space: 100.0)
+                ],
+              )
+            ],
+          ),
+          onNotification: (ScrollNotification scrollInfo) {
+            if (scrollInfo.metrics.axis == Axis.vertical) {
+              setOpacity(scrollInfo.metrics.pixels);
+            }
+            return true;
+          },
         )),
         Positioned.fill(
-            child: SafeArea(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(AppBox.defaultPadding),
+            child: Column(
+          children: [
+            SafeArea(
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: AppBox.defaultPadding,
+                    vertical: AppBox.smallPadding),
+                decoration: BoxDecoration(boxShadow: [
+                  BoxShadow(
+                      blurRadius: 3,
+                      color: AppColor.monoLight.withOpacity(opacity))
+                ], color: AppColor.monoWhite.withOpacity(opacity)),
                 child: Row(
                   children: [
                     Expanded(
@@ -74,26 +120,15 @@ class HomePage extends StatelessWidget {
                                     fontWeight: AppText.semibold))
                           ])),
                     ),
-                    IconButton(onPressed: () {}, icon: const Icon(Icons.search))
+                    IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.search_rounded))
                   ],
                 ),
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         )),
-        Positioned(
-          bottom: 0,
-          child: Container(
-            height: AppBox.extraSize + 10,
-            width: width,
-            decoration: BoxDecoration(
-                color: AppColor.monoCeramic,
-                boxShadow: AppBox.defaultShadow,
-                borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(AppBox.curvedRadius),
-                    topRight: Radius.circular(AppBox.curvedRadius))),
-          ),
-        )
       ]),
     );
   }
@@ -127,19 +162,39 @@ class CategoriesList extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: AppBox.defaultPadding),
         height: 230,
-        child: ListView(
-          scrollDirection: Axis.horizontal,
-          children: [
-            Categories().verticleCard(text: "Take Advice"),
-            const SizedBox(
-              width: AppBox.defaultPadding,
-            ),
-            Categories().verticleCard(text: "Take Advice"),
-            const SizedBox(
-              width: AppBox.defaultPadding,
-            ),
-            Categories().verticleCard(text: "Take Advice")
-          ],
+        child: NotificationListener<OverscrollIndicatorNotification>(
+          onNotification: (overScroll) {
+            overScroll.disallowIndicator();
+            return true;
+          },
+          child: ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              Categories.verticleCard(
+                  text: "Take Advice",
+                  imagePath: "assets/images/doctor.png",
+                  callback: () {}),
+              const SizedBox(
+                width: AppBox.defaultPadding,
+              ),
+              Categories.verticleCard(
+                  text: "Find Doctor",
+                  imagePath: "assets/images/search.png",
+                  callback: () {}),
+              const SizedBox(
+                width: AppBox.defaultPadding,
+              ),
+              Categories.verticleCard(
+                  text: "Handbook",
+                  imagePath: "assets/images/medical-handbook.png",
+                  callback: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MedicalHandbookPage()));
+                  })
+            ],
+          ),
         ),
       ),
     );
@@ -152,10 +207,14 @@ class SurveyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(AppBox.defaultPadding),
+      padding: const EdgeInsets.fromLTRB(AppBox.defaultPadding,
+          AppBox.defaultPadding, AppBox.defaultPadding, 0),
       child: TextButton(
         style: TextButton.styleFrom(
-            alignment: Alignment.topLeft, primary: AppColor.monoShade),
+            alignment: Alignment.topLeft,
+            primary: AppColor.monoWhite,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(AppBox.defaultRadius))),
         onPressed: () {},
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -164,7 +223,6 @@ class SurveyButton extends StatelessWidget {
               'What is your problems today?',
               style: TextStyle(
                   color: AppColor.monoBlack,
-                  fontFamily: 'Google Sans',
                   fontSize: AppText.heading2,
                   fontWeight: AppText.semibold),
             ),
@@ -183,15 +241,11 @@ class SurveyButton extends StatelessWidget {
 }
 
 class Upcomming extends StatelessWidget {
-  final schDate;
-  final schTitle;
-  final schDr;
-  const Upcomming(
-      {Key? key,
-      required this.schDate,
-      required this.schTitle,
-      required this.schDr})
-      : super(key: key);
+  Upcomming({
+    Key? key,
+  }) : super(key: key);
+
+  Schedule schedule = Utils.getUpcoming();
 
   @override
   Widget build(BuildContext context) {
@@ -205,13 +259,22 @@ class Upcomming extends StatelessWidget {
             child: Text(
               "Upcoming",
               style: TextStyle(
-                  fontFamily: 'Google Sans',
-                  fontSize: AppText.heading2,
-                  fontWeight: AppText.semibold),
+                  fontSize: AppText.heading2, fontWeight: AppText.semibold),
             ),
           ),
-          ScheduleCard()
-              .mediumCard(date: schDate, title: schTitle, doctor: schDr)
+          ScheduleCard.mediumCard(
+              date: schedule.date,
+              title: schedule.title,
+              doctor: schedule.doctor,
+              imagePath: schedule.imagePath,
+              callback: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ScheduleDetailPage(
+                              currentSchedule: schedule,
+                            )));
+              })
         ],
       ),
     );
@@ -219,32 +282,32 @@ class Upcomming extends StatelessWidget {
 }
 
 class Spotlight extends StatelessWidget {
-  const Spotlight({Key? key}) : super(key: key);
+  Spotlight({Key? key}) : super(key: key);
+
+  Post posts = Utils.getSpotlight();
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        SizedBox(
+      children: [
+        const SizedBox(
           height: AppBox.defaultPadding,
         ),
-        Padding(
+        const Padding(
           padding: EdgeInsets.all(AppBox.defaultPadding),
           child: Text(
             "Patient Thoguht",
             style: TextStyle(
-                fontFamily: 'Google Sans',
-                fontSize: AppText.heading2,
-                fontWeight: AppText.semibold),
+                fontSize: AppText.heading2, fontWeight: AppText.semibold),
           ),
         ),
         PostItem(
-          name: "Van Ten",
-          date: "Jan 2nd 2022",
-          text: "Thank you so much!",
-          like: 20,
-          dislike: 100,
+          name: posts.name,
+          date: posts.date,
+          text: posts.content,
+          like: posts.like,
+          dislike: posts.dislike,
         ),
       ],
     );

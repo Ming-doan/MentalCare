@@ -59,7 +59,6 @@ class WelcomePage2 extends StatelessWidget {
                       style: TextStyle(
                           color: AppColor.pacificSecondary,
                           fontSize: 40,
-                          fontFamily: 'Google Sans',
                           fontWeight: FontWeight.w900),
                     ),
                   ),

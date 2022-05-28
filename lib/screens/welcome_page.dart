@@ -53,7 +53,6 @@ class WelcomePage extends StatelessWidget {
                       style: TextStyle(
                           color: AppColor.naturalSecondary,
                           fontSize: 40,
-                          fontFamily: 'Google Sans',
                           fontWeight: FontWeight.w900),
                     ),
                   ),
@@ -64,9 +63,9 @@ class WelcomePage extends StatelessWidget {
                       child: Text(
                         text,
                         style: const TextStyle(
-                            color: AppColor.monoBlack,
-                            fontSize: AppText.heading2,
-                            fontFamily: 'Google Sans'),
+                          color: AppColor.monoBlack,
+                          fontSize: AppText.heading2,
+                        ),
                       ),
                     ),
                   ),

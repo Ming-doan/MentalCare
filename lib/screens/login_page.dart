@@ -49,7 +49,6 @@ class LoginPage extends StatelessWidget {
                       style: TextStyle(
                           color: AppColor.naturalSecondary,
                           fontSize: 28,
-                          fontFamily: 'Google Sans',
                           fontWeight: FontWeight.w900),
                     ),
                   ),
@@ -60,7 +59,6 @@ class LoginPage extends StatelessWidget {
                       "Sign in to Me.care",
                       style: TextStyle(
                           color: AppColor.monoBlack,
-                          fontFamily: 'Google Sans',
                           fontSize: AppText.heading3),
                     ),
                   ),

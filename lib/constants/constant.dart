@@ -6,11 +6,16 @@
 // -----------------------------------------------
 import 'package:flutter/material.dart';
 
+class App {
+  static late double screenWidth = 0.0;
+  static late double screenHieght = 0.0;
+}
+
 class AppColor {
   static const Color crypticPrimary = Color(0xff7ec9f5);
   static const Color crypticSecondary = Color(0xff3957ed);
-  static const Color apuaPrimary = Color(0xff64f5cd);
-  static const Color apuaSecondary = Color(0xff4799e9);
+  static const Color aquaPrimary = Color(0xff64f5cd);
+  static const Color aquaSecondary = Color(0xff4799e9);
   static const Color pacificPrimary = Color(0xff8aedf6);
   static const Color pacificSecondary = Color(0xff60a2f5);
   static const Color naturalPrimary = Color(0xff80ed99);
@@ -43,7 +48,7 @@ class AppGradient {
     AppColor.crypticPrimary,
     AppColor.crypticSecondary
   ];
-  static List<Color> aqua = [AppColor.apuaPrimary, AppColor.apuaSecondary];
+  static List<Color> aqua = [AppColor.aquaPrimary, AppColor.aquaSecondary];
 }
 
 class AppText {
@@ -72,11 +77,12 @@ class AppBox {
   static const double mediumSize = 34.0;
   static const double smallSize = 24.0;
 
+  static const double circleRadius = 100.0;
   static const double curvedRadius = 20.0;
   static const double defaultRadius = 10.0;
 
   static List<BoxShadow> defaultShadow = [
-    const BoxShadow(color: AppColor.monoShade, blurRadius: 10)
+    const BoxShadow(color: AppColor.monoLight, blurRadius: 3)
   ];
 
   static Widget verticalSpacer({double space = defaultPadding}) {

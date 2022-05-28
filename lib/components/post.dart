@@ -26,6 +26,7 @@ class PostItem extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(AppBox.defaultPadding),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   width: AppBox.largeSize,
@@ -43,16 +44,16 @@ class PostItem extends StatelessWidget {
                       children: [
                         Text(
                           name,
-                          style: const TextStyle(
-                              fontFamily: 'Google Sans',
-                              fontSize: AppText.heading3),
+                          style: const TextStyle(fontSize: AppText.heading3),
                         ),
                         Text(date)
                       ],
                     ),
                   ),
                 ),
-                IconButton(onPressed: () {}, icon: const Icon(Icons.more_horiz))
+                IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.more_horiz_outlined))
               ],
             ),
           ),
@@ -61,7 +62,7 @@ class PostItem extends StatelessWidget {
             child: Text(
               text,
               textAlign: TextAlign.start,
-              style: const TextStyle(fontSize: AppText.heading3),
+              style: const TextStyle(fontSize: AppText.heading4 + 2),
             ),
           ),
           Container(
@@ -75,12 +76,12 @@ class PostItem extends StatelessWidget {
               children: [
                 TextButton.icon(
                     style: TextButton.styleFrom(
-                        primary: AppColor.statusSuccess,
+                        primary: AppColor.monoShadow,
                         shape: RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.circular(AppBox.defaultRadius))),
                     onPressed: () {},
-                    icon: const Icon(Icons.thumb_up),
+                    icon: const Icon(Icons.thumb_up_outlined),
                     label: Text('$like')),
                 TextButton.icon(
                     style: TextButton.styleFrom(
@@ -89,7 +90,7 @@ class PostItem extends StatelessWidget {
                             borderRadius:
                                 BorderRadius.circular(AppBox.defaultRadius))),
                     onPressed: () {},
-                    icon: const Icon(Icons.thumb_down),
+                    icon: const Icon(Icons.thumb_down_outlined),
                     label: Text('$dislike')),
                 Expanded(
                   child: Container(),
@@ -101,7 +102,7 @@ class PostItem extends StatelessWidget {
                             borderRadius:
                                 BorderRadius.circular(AppBox.defaultRadius))),
                     onPressed: () {},
-                    icon: const Icon(Icons.share),
+                    icon: const Icon(Icons.share_outlined),
                     label: const Text('Share')),
               ],
             ),
